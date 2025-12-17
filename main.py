@@ -41,7 +41,8 @@ def filter_range(data, range_key: str):
         raise ValueError("Invalid range key. Use: d, m, y, x")
 
 def build_response(symbol, subset):
-    closes = subset["Close"]
+    closes = pd.to_numeric(subset["Close"], errors="coerce")
+
     
     return {
         "symbol": symbol.upper(),
